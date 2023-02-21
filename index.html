@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<!--HEAD-->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> PIZZA TOWER JUMPSCARE. </title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	
+<!--BODY-->
+	<body>
+	<!--NAVBAR-->
+	
+	<!-- THE PAGE-->
+	<div id="overlay" class="overlay">
+		<div class="blur"></div>
+		<div class="content">
+			<h1></h1>
+			<p></p>
+		</div>
+	</div>
+		
+	<script>
+		var el = document.getElementById('overlay');
+		if(el)
+		{
+			el.addEventListener('click', function()
+			{
+				show_jumpscare();
+				//el.style.display = 'none';
+				el.style.opacity = 0.5;
+			});
+		}
+	</script>
+	
+	<!-- JUMPSCARE -->
+	<img id="invalid-attempt-img" src="images/Invalid.png" style="display: none;">
+	<audio id="audio_jumpscare" src="sound/wrong.wav" preload="auto" autoplay style="display:none;"></audio>
+	<script>
+		function show_jumpscare() {
+		  
+		  // Create an overlay div that covers the entire screen
+		  var overlay = document.createElement('div');
+		  overlay.style.position = 'fixed';
+		  overlay.style.top = 0;
+		  overlay.style.left = 0;
+		  overlay.style.width = '100%';
+		  overlay.style.height = '100%';
+		  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'; // Black with 80% opacity
+
+		  // Create an image element and add it to the overlay div
+		  var img = document.createElement('img');
+		  document.getElementById('audio_jumpscare').play();
+		  img.src = 'images/Invalid.png';
+		  img.style.position = 'absolute';
+		  img.style.top = '50%';
+		  img.style.left = '50%';
+		  img.style.backgroundColor = 'transparent';
+		  img.style.transform = 'translate(-50%, -50%) scale(0)'; // Initially scaled down
+		  img.style.transition = 'transform 1s'; // 1 second animation
+
+		  overlay.appendChild(img);
+		  document.body.appendChild(overlay);
+
+		  var container = document.querySelector('.blur');
+		  container.classList.add('jump_no-animation');
+		  
+		  container = document.querySelector('.overlay')
+		  container.classList.add('jump_no-animation');
+		  
+		  // Use setTimeout to make the image scale up and then redirect
+		  setTimeout(function() {
+			img.style.transform = 'translate(-50%, -50%) scale(4)'; // Scale up to 300%
+			setTimeout(function() {
+			  var blur = document.getElementById('blur');
+			  if (blur) blur.remove(); // Remove the blur element if it exists
+			  window.location.href = 'https://store.steampowered.com/app/2231450/Pizza_Tower/'; //index.html
+			}, 285); // Wait before redirecting
+		  }, 100); // Wait before scaling up
+		}
+	</script>
+	</body>
+</html>
