@@ -51,6 +51,8 @@
 
 		  // Create an image element and add it to the overlay div
 		  var img = document.createElement('img');
+		  document.getElementById('audio_jumpscare').pause();
+		  document.getElementById('audio_jumpscare').currentTime = 0;
 		  document.getElementById('audio_jumpscare').play();
 		  img.src = 'images/Invalid.png';
 		  img.style.position = 'absolute';
